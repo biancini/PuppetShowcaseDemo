@@ -1,2 +1,2 @@
-PuppetShowcaseDemo
-==================
+Puppet Showcase Demo
+====================
