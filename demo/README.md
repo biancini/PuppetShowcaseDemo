@@ -122,6 +122,8 @@ The same steps, with the proper modifications, will permit to install the Puppet
   should be able to verify that apache has been installed (for instance by navigating with a browser to the
   web-page ``http://linuxclient.local/`` and seeing the familiar Apache welcome page).
 
+  The execution of this last step should happen as shown in this YouTube video: <http://youtu.be/tMaNIXZxhfA>.
+
 Installing Windows client
 -------------------------
 
@@ -186,3 +188,5 @@ install the Puppet master also on different versions of Windows (like Windows 7,
   The command should execute with no problems and at the end of the installation and configuration process you
   should be able to verify that apache has been installed (for instance by navigating with a browser to the
   web-page ``http://windowsclient.local/`` and seeing the familiar Apache welcome page).
+
+  The execution of this last step should happen as shown in this YouTube video: <http://youtu.be/uSrpZLwpyT0>.
