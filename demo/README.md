@@ -25,18 +25,21 @@ on different Operating Systems, like Windows.
 * Install the puppet master package. To install the puppet master software you can follow the instructions here:
   <http://projects.puppetlabs.com/projects/1/wiki/downloading_puppet>.
   Assuming you are using Ubuntu you can install the puppet master using the command:
+
   ```
   root@puppetmaster:~# sudo apt-get install puppetmaster
-  ``
+  ```
 
 * Install all the required additional puppet modules. The recipes created to install Apache httpd on Linux and on Windows will leverage
   existing puppet modules that can be easily installed. To install the needed modules execute the following commands:
+
   ```
   root@puppetmaster:~# sudo puppet module install puppetlabs/registry
   root@puppetmaster:~# sudo puppet module install reidmv/windows_package
   root@puppetmaster:~# sudo puppet module install simondean/net_share
   root@puppetmaster:~# sudo puppet module install puppetlabs/apache
   ```
+
   The first three modules installed will be used by the Windows part of the recipe, the latter instead will be used for Linux.
   If you are interested in having more information about these modules, please visit the following pages:
   * [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry)
@@ -50,7 +53,10 @@ on different Operating Systems, like Windows.
   the actual names of the two clients.
 
 * Restart the ``puppetmaster`` service, on Ubuntu you can do that by executing the following command:
-  ``` root@puppetmaster:~# service puppetmaster restart```
+
+  ```
+  root@puppetmaster:~# service puppetmaster restart
+  ```
 
 Installing Linux client
 -----------------------
@@ -62,11 +68,13 @@ The same steps, with the proper modifications, will permit to install the Puppet
 * Install the puppet package. To install the puppet master software you can follow the instructions here:
   <http://projects.puppetlabs.com/projects/1/wiki/downloading_puppet>.
   Assuming you are using Ubuntu you can install the puppet master using the command:
+
   ```
   root@linuxclient:~# sudo apt-get install puppet
-  ``
+  ```
 
 * Modify the file ``/etc/puppet/puppet.conf`` adding the following section:
+
   ```
   [agent]
   server=puppetmaster.local
@@ -99,12 +107,14 @@ The same steps, with the proper modifications, will permit to install the Puppet
     Exiting; no certificate found and waitforcert is disabled
     ```
   * On the puppet master, execute the following command
+
     ```
     root@puppetmaster:~# puppet cert sign --all
     ```
 
 * Now you are finally ready to use puppet to intall apache httpd. You can do that by issuing the following
   command on the ``linuxclient`` machine:
+
   ```
   root@linuxclient:~# puppet agent --test
   ```
@@ -122,11 +132,12 @@ install the Puppet master also on different versions of Windows (like Windows 7,
 * Install the puppet package. To install the puppet master software you can follow the instructions here:
   <http://docs.puppetlabs.com/windows/installing.html>.
   For the demo the ``Puppet-3.3.1.msi`` file was downloaded and manually installed on Windows.
-  ``
+  
   During the installation process, the name of the Puppet master server will be asked, in our example we provided
   ``puppetmaster.local``, you have to provide the network name of the server installed in the previous section.
 
 * Modify the file ``C:\Documents and Settings\All Users\Application data\PuppetLabs\puppet\etc\puppet.conf`` adding the following section:
+
   ```
   [agent]
   server=puppetmaster.local
@@ -167,9 +178,11 @@ install the Puppet master also on different versions of Windows (like Windows 7,
 * Now you are finally ready to use puppet to intall apache httpd. You can do that by clicking the icon
   ``Start Comand Prompt with Puppet`` under ``Start->All Programs->Puppet`` on the Windows client machine and issuing the following
   command:
+
   ```
   root@linuxclient:~# puppet agent --test
   ```
+
   The command should execute with no problems and at the end of the installation and configuration process you
   should be able to verify that apache has been installed (for instance by navigating with a browser to the
   web-page ``http://windowsclient.local/`` and seeing the familiar Apache welcome page).
