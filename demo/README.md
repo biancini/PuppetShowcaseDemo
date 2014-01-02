@@ -67,9 +67,11 @@ The same steps, with the proper modifications, will permit to install the Puppet
   ``
 
 * Modify the file ``/etc/puppet/puppet.conf`` adding the following section:
-  > [agent]
-  > server=puppetmaster.local
-  > pluginsync=true
+  ```
+  [agent]
+  server=puppetmaster.local
+  pluginsync=true
+  ```
 
   These instruction will instruct the Puppet agent to:
   * Connect to the puppet master at the address ``puppetmaster.local``, you need to change this name to match the
@@ -85,19 +87,20 @@ The same steps, with the proper modifications, will permit to install the Puppet
   the usage of certificates inside Puppet can be found here:
   <http://projects.puppetlabs.com/projects/1/wiki/certificates_and_security>.
   To realize this certificate excange you need to perform the following operations on both the puppet client and
-  the puppet master. On the client:
-  ```
-  root@linuxclient:~# puppet agent --test
-  info: Creating a new SSL key for linuxclient.local
-  info: Caching certificate for ca
-  info: Creating a new SSL certificate request for linuxclient.local
-  info: Certificate Request fingerprint (md5): 76:DA:A4:D2:A0:92:4E:94:7B:3F:34:B5:EF:F1:F0:29
-  Exiting; no certificate found and waitforcert is disabled
-  ```
-  On the puppet master:
-  ```
-  root@puppetmaster:~# puppet cert sign --all
-  ```
+  the puppet master.
+  * On the client, execute the following command:
+    ```
+    root@linuxclient:~# puppet agent --test
+    info: Creating a new SSL key for linuxclient.local
+    info: Caching certificate for ca
+    info: Creating a new SSL certificate request for linuxclient.local
+    info: Certificate Request fingerprint (md5): 76:DA:A4:D2:A0:92:4E:94:7B:3F:34:B5:EF:F1:F0:29
+    Exiting; no certificate found and waitforcert is disabled
+    ```
+  * On the puppet master, execute the following command
+    ```
+    root@puppetmaster:~# puppet cert sign --all
+    ```
 
 * Now you are finally ready to use puppet to intall apache httpd. You can do that by issuing the following
   command on the ``linuxclient`` machine:
@@ -111,4 +114,61 @@ The same steps, with the proper modifications, will permit to install the Puppet
 Installing Windows client
 -------------------------
 
-aa
+In the following the procedure to install a puppet client on a Windows server will be described.
+The demo has been realized using Windows XP. The same steps, with some eventual modification, will permit to
+install the Puppet master also on different versions of Windows (like Windows 7, for instance).
+
+* Install the puppet package. To install the puppet master software you can follow the instructions here:
+  <http://docs.puppetlabs.com/windows/installing.html>.
+  For the demo the ``Puppet-3.3.1.msi`` file was downloaded and manually installed on Windows.
+  ``
+  During the installation process, the name of the Puppet master server will be asked, in our example we provided
+  ``puppetmaster.local``, you have to provide the network name of the server installed in the previous section.
+
+* Modify the file ``C:\Documents and Settings\All Users\Application data\PuppetLabs\puppet\etc\puppet.conf`` adding the following section:
+  ```
+  [agent]
+  server=puppetmaster.local
+  pluginsync=true
+  
+  ```
+
+  These instruction will instruct the Puppet agent to:
+  * Connect to the puppet master at the address ``puppetmaster.local``, you need to change this name to match the
+    network name of the puppet master installet in the previous section. Attention it is important that the client
+    server is able to contact the puppet master via the network using the name specified. To test this you can
+    open a console and test that ``ping puppetmaster.local`` (or the name you specified in the ``puppet.conf`` file)
+    will work correctly.
+  * Download all additional plugins, modules and facts (if any) from the puppet master to be executed during
+    the installation phase.
+
+* Exchange certificates with puppet master to guarantee that a proper identification of servers is performed.
+  This step is required for security reasons by the Puppet infrastructure. A more descriptive description of
+  the usage of certificates inside Puppet can be found here:
+  <http://projects.puppetlabs.com/projects/1/wiki/certificates_and_security>.
+  To realize this certificate excange you need to perform the following operations on both the puppet client and
+  the puppet master.
+  * On the client, click the icon ``Start Comand Prompt with Puppet`` under ``Start->All Programs->Puppet`` and
+    execute the following command:
+    ```
+    C:\Program Files\Puppet Labs\Puppet\bin> puppet agent --test
+    info: Creating a new SSL key for windowsclient.local
+    info: Caching certificate for ca
+    info: Creating a new SSL certificate request for windowsclient.local
+    info: Certificate Request fingerprint (md5): 76:DA:A4:D2:A0:92:4E:94:7B:3F:34:B5:EF:F1:F0:29
+    Exiting; no certificate found and waitforcert is disabled
+    ```
+  * On the puppet master, execute the following command:
+    ```
+    root@puppetmaster:~# puppet cert sign --all
+    ```
+
+* Now you are finally ready to use puppet to intall apache httpd. You can do that by clicking the icon
+  ``Start Comand Prompt with Puppet`` under ``Start->All Programs->Puppet`` on the Windows client machine and issuing the following
+  command:
+  ```
+  root@linuxclient:~# puppet agent --test
+  ```
+  The command should execute with no problems and at the end of the installation and configuration process you
+  should be able to verify that apache has been installed (for instance by navigating with a browser to the
+  web-page ``http://windowsclient.local/`` and seeing the familiar Apache welcome page).
