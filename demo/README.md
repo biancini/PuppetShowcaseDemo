@@ -89,6 +89,7 @@ The same steps, with the proper modifications, will permit to install the Puppet
   To realize this certificate excange you need to perform the following operations on both the puppet client and
   the puppet master.
   * On the client, execute the following command:
+
     ```
     root@linuxclient:~# puppet agent --test
     info: Creating a new SSL key for linuxclient.local
@@ -130,7 +131,6 @@ install the Puppet master also on different versions of Windows (like Windows 7,
   [agent]
   server=puppetmaster.local
   pluginsync=true
-  
   ```
 
   These instruction will instruct the Puppet agent to:
