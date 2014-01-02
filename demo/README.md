@@ -23,7 +23,7 @@ The same steps, with the proper modifications, will permit to install the Puppet
 on different Operating Systems, like Windows.
 
 * Install the puppet master package. To install the puppet master software you can follow the instructions here:
-  [installation of puppet master](http://projects.puppetlabs.com/projects/1/wiki/downloading_puppet).
+  <http://projects.puppetlabs.com/projects/1/wiki/downloading_puppet>.
   Assuming you are using Ubuntu you can install the puppet master using the command:
   ```
   # sudo apt-get install puppetmaster
