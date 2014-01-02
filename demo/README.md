@@ -150,6 +150,7 @@ install the Puppet master also on different versions of Windows (like Windows 7,
   the puppet master.
   * On the client, click the icon ``Start Comand Prompt with Puppet`` under ``Start->All Programs->Puppet`` and
     execute the following command:
+
     ```
     C:\Program Files\Puppet Labs\Puppet\bin> puppet agent --test
     info: Creating a new SSL key for windowsclient.local
