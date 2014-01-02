@@ -26,7 +26,7 @@ on different Operating Systems, like Windows.
   <http://projects.puppetlabs.com/projects/1/wiki/downloading_puppet>.
   Assuming you are using Ubuntu you can install the puppet master using the command:
   ```
-  # sudo apt-get install puppetmaster
+  root@puppetmaster:~# sudo apt-get install puppetmaster
   ``
 
 * Install all the required additional puppet modules. The recipes created to install Apache httpd on Linux and on Windows will leverage
