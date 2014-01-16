@@ -12,3 +12,4 @@ Showcase on Puppet - Presentation
 ![Slide 09](https://raw.github.com/biancini/PuppetShowcaseDemo/master/presentation/images/Slide09.png)
 ![Slide 10](https://raw.github.com/biancini/PuppetShowcaseDemo/master/presentation/images/Slide10.png)
 ![Slide 11](https://raw.github.com/biancini/PuppetShowcaseDemo/master/presentation/images/Slide11.png)
+![Slide 12](https://raw.github.com/biancini/PuppetShowcaseDemo/master/presentation/images/Slide12.png)
